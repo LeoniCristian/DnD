@@ -1,0 +1,52 @@
+<body>
+
+    <svg></svg>
+	
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+
+function dragstarted(event, d) {
+  d3.select(this).raise().attr("stroke", "black");
+}
+
+function dragged(event, d) {
+    d.x = event.x;
+    d.y = event.y;
+    d3.select(this).attr("cx", (d) => d.x).attr("cy", (d) => d.y);
+}
+
+function dragended(event, d) {
+  d3.select(this).attr("stroke", null);
+}
+
+var drag = d3.drag()
+    .on("start", dragstarted)
+    .on("drag", function(event,d) {dragged(event,d)} )
+    .on("end", dragended);
+
+var width = 400;
+var height = 400;
+var radius = 20;
+
+const svg = d3.select("svg")
+    .attr("viewBox", [0, 0, width, height])
+    .attr("background-color","#ccc")
+    .attr("stroke-width", 2);
+
+const circles = d3.range(20).map(i => ({
+    x: Math.random() * (width - radius * 2) + radius,
+    y: Math.random() * (height - radius * 2) + radius,
+    }));
+
+svg.selectAll("circle")
+    .data(circles)
+    .join("circle")
+        .attr("cx", d => d.x)
+        .attr("cy", d => d.y)
+        .attr("r", radius)
+        .attr("fill", (d, i) => d3.schemeCategory10[i % 10])
+        .call(drag);
+
+</script>
+
+</body>

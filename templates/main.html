@@ -54,10 +54,10 @@
 		// Class to make it responsive.
 		.classed("svg-content-responsive", true);
 		
-	d3.csv("http:/map",function(d){
+	d3.csv("http:/game/generatemap",function(d){
 		console.log(d);
 		map = new Map('svg',d);
-		objects= new Object_layer('#main',map.get_tile_size());
+		<!-- objects= new Object_layer('#main',map.get_tile_size()); -->
 	});
 	
 	</script>

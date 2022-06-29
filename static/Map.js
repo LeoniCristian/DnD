@@ -32,12 +32,7 @@ class Map{
 		console.log(svg.style("height"))
 		console.log(map_size)
 		console.log(tile_size)
-		
-			
-			
-		
-
-		
+				
 		var myimage_grid = svg
 			.selectAll('g')
 			.data(this.grid)
@@ -50,7 +45,7 @@ class Map{
 			.data((d)=>Object.values(d).slice(0,-1))
 			.enter()
 			.append('image')
-			.attr('xlink:href', (d)=>'http://localhost:9001/'+d)
+			.attr('xlink:href', (d)=>'http://localhost:9001/images/test_image.png')
 			.attr('width', tile_size)
 			.attr('height', tile_size )
 			.attr('preserveAspectRatio',"none")

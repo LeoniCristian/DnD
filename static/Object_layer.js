@@ -3,7 +3,7 @@ function append(){
 
 	d3.select('svg')
 			.append('image')
-			.attr('xlink:href', (d)=>'http://localhost:9001/test_image.png')
+			.attr('xlink:href', (d)=>'http://localhost:9001/images/test_image.png')
 			.attr('width', 100)
 			.attr('height', 100 )
 			.attr('preserveAspectRatio',"none")
@@ -16,7 +16,6 @@ class Object_layer{
 		this.tile_size = tile_size;
 
 		this.setup();
-
 	}
 	
 	setup(){
