@@ -1,0 +1,67 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<style>
+		html, body, #fullheight {
+			min-height: 100% !important;
+			height: 100%;
+			overflow:hidden;
+			padding :0;
+			margin :0;
+		}
+		.container {
+			padding :0;
+			margin :0;
+			height: 100%;
+			width: 100%;
+			border:2px solid #000;
+			overflow-y: scroll;
+			overflow-x: scroll;
+		}
+
+		svg {
+			display: block;
+			width: 100%;
+			height: 100%;
+
+		}
+	</style>
+</head>
+  
+
+  
+<body>
+	<div id = 'main' class="container">
+		<svg></svg>
+	</div>
+
+
+
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="{{ url_for('static', filename='Map.js') }}"></script>
+	<script src="{{ url_for('static', filename='Object_layer.js') }}"></script>
+	<script>
+	var map,objects;
+	var svg = d3.select('svg')
+		.attr("preserveAspectRatio", "xMinYMin meet")
+		.style('overflow-y',"scroll")
+		<!-- .attr("viewBox", "0 0 960 400") -->
+		// Class to make it responsive.
+		.classed("svg-content-responsive", true);
+		
+	d3.csv("http:/map",function(d){
+		console.log(d);
+		map = new Map('svg',d);
+		objects= new Object_layer('#main',map.get_tile_size());
+	});
+	
+	</script>
+
+</body>
+  
+</html>
